@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Extend Subscription</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    h2 { margin-top: 0; }
+    #greeting {
+      font-size: 18px;
+      font-weight: bold;
+      color: #4cafef;
+      margin-bottom: 12px;
+      min-height: 24px;
+    }
+    .field { margin-bottom: 12px; text-align: left; }
+    label { font-size: 14px; display: block; margin-bottom: 4px; }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #f0f0f0;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #4cafef;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    #message {
+      display: none;
+      margin-top: 12px;
+      text-align: center;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div id="greeting">Hi there…</div>
+    <h2>Extend Subscription</h2>
+    <div class="field">
+      <label>Plan</label>
+      <select disabled>
+        <option>Premium – $9.99/month</option>
+        <option>Standard – $4.99/month</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Cardholder Name</label>
+      <input type="text" placeholder="John Doe" disabled>
+    </div>
+    <div class="field">
+      <label>Card Number</label>
+      <input type="text" placeholder="4242 4242 4242 4242" disabled>
+    </div>
+    <div class="field">
+      <label>Expiration</label>
+      <input type="text" placeholder="MM/YY" disabled>
+    </div>
+    <div class="field">
+      <label>CVC</label>
+      <input type="text" placeholder="123" disabled>
+    </div>
+    <button id="extendBtn">Confirm & Extend</button>
+    <div id="message">🎉 Gotcha! This is just a prank – no data collected. 🎉</div>
+  </div>
+
+  <script>
+    // Rotate greeting names
+    const names = ["Kristiyana", "Sam", "Sophia", "Emma", "Liam", "Olivia", "Ava", "Mason"];
+    const greeting = document.getElementById('greeting');
+    let index = 0;
+    setInterval(() => {
+      greeting.textContent = `Hi ${names[index]}!`;
+      index = (index + 1) % names.length;
+    }, 1000);
+
+    // Handle fake button click
+    document.getElementById('extendBtn').addEventListener('click', () => {
+      const btn = document.getElementById('extendBtn');
+      btn.disabled = true;
+      btn.textContent = "Processing...";
+      setTimeout(() => {
+        document.getElementById('message').style.display = 'block';
+        btn.textContent = "Done";
+      }, 800);
+    });
+  </script>
+</body>
+</html>
